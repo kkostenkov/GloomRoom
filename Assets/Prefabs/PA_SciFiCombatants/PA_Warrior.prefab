@@ -414,11 +414,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 480028}
-  - 135: {fileID: 13503628}
   - 114: {fileID: 11479696}
   - 114: {fileID: 11438998}
   - 111: {fileID: 11192954}
   - 114: {fileID: 11418562}
+  - 54: {fileID: 5437796}
+  - 65: {fileID: 6556400}
+  - 114: {fileID: 11476356}
   m_Layer: 0
   m_Name: PA_Warrior
   m_TagString: Untagged
@@ -884,7 +886,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183812}
   m_LocalRotation: {x: 0, y: -0.9702231, z: 0, w: 0.242213}
-  m_LocalPosition: {x: -6.600814, y: -2.2147837, z: -3.4343863}
+  m_LocalPosition: {x: -18.97, y: -0.44, z: 11.29}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_LocalEulerAnglesHint: {x: 0, y: -151.96559, z: 0}
   m_Children:
@@ -933,6 +935,33 @@ Transform:
   - {fileID: 475214}
   m_Father: {fileID: 447276}
   m_RootOrder: 2
+--- !u!54 &5437796
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183812}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6556400
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183812}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7995569, y: 0.31794202, z: 1.0306545}
+  m_Center: {x: 0.03125828, y: 0.24609345, z: -0.19445543}
 --- !u!111 &11192954
 Animation:
   m_ObjectHideFlags: 1
@@ -975,6 +1004,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationComponent: {fileID: 11192954}
+--- !u!114 &11476356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133df4e0f7a44cc4e86813e658a6b106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!114 &11479696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -987,18 +1028,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   overchargeTime: 3
---- !u!135 &13503628
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 183812}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &13735772
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

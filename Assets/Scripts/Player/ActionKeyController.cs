@@ -28,7 +28,7 @@ public class ActionKeyController : MonoBehaviour {
             GameObject interactible = GetTargetObject();
             //print(interactible != null);
             // Can it be used?
-            InterfaceSearcher.GetInterfaces<IInteractible>(out interactInterfaces, interactible);
+            InterfaceSearcher.GetInterfaces(out interactInterfaces, interactible);
             foreach (IInteractible face in interactInterfaces)
             {
                 face.Activate();
@@ -40,9 +40,8 @@ public class ActionKeyController : MonoBehaviour {
     private GameObject GetTargetObject (){
 		// returns object on center of screen
 		ray = cam.ScreenPointToRay(screenCenter);
-        Debug.DrawRay(ray.origin, selfTransform.forward, Color.red, 0.5f);
+        //Debug.DrawRay(ray.origin, selfTransform.forward, Color.red, 0.5f);
 		if (Physics.Raycast(ray, out hit, ACTION_DISTANCE)) {
-            print("found object");
 			return hit.collider.gameObject;
 		}
 		return null;
