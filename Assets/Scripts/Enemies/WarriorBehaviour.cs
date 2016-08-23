@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class WarriorBehaviour : MonoBehaviour {
-    public Transform player;
+    private Transform player;
     private const float playerDetectionRadius = 12f;
     private enum NpcMood { Calm, Angry, Dead };
     private NpcMood mood;
@@ -75,17 +75,20 @@ public class WarriorBehaviour : MonoBehaviour {
         {
             while (mood != NpcMood.Calm) yield return null;
             // Check player visibility (if near).
-            if (Vector3.Distance(selfTransform.position, player.position) < playerDetectionRadius)
+            if (player != null)
             {
-                ray = new Ray(selfTransform.position, player.position - selfTransform.position);
-                if (Physics.Raycast(ray, out hit, playerDetectionRadius))
+                if (Vector3.Distance(selfTransform.position, player.position) < playerDetectionRadius)
                 {
-                    if (hit.transform.tag == Tags.Player)
+                    ray = new Ray(selfTransform.position, player.position - selfTransform.position);
+                    if (Physics.Raycast(ray, out hit, playerDetectionRadius))
                     {
-                        print("player detected");
-                        mood = NpcMood.Angry;
-                        Angry();
-                        continue;
+                        if (hit.transform.tag == Tags.Player)
+                        {
+                            print("player detected");
+                            mood = NpcMood.Angry;
+                            Angry();
+                            continue;
+                        }
                     }
                 }
             }
