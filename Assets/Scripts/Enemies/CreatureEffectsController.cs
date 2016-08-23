@@ -2,8 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class AnimationController : MonoBehaviour {
-    [SerializeField ] private Animation animationComponent;
+public class CreatureEffectsController : MonoBehaviour {
+    [SerializeField] private AudioClip explosionSound;
+    [SerializeField] ParticleEmitter explosionVisual;
+    private AudioSource audioSource;
+    [SerializeField] private Animation animationComponent;
     private Dictionary<string, string> animationNames;
     ChargeHolder chargeHolder;
     WarriorBehaviour behaviour;
@@ -35,6 +38,7 @@ public class AnimationController : MonoBehaviour {
     }
 
 	void Start () {
+        audioSource = GetComponent<AudioSource>();
         animationComponent["idle"].wrapMode = WrapMode.Loop;
         animationComponent.Play("idle", PlayMode.StopAll);
         animationComponent["collapse"].wrapMode = WrapMode.ClampForever;
@@ -65,7 +69,8 @@ public class AnimationController : MonoBehaviour {
     }
     private void OnOvercharge()
     {
-        
+        audioSource.clip = explosionSound;
+        audioSource.Play();
         animationComponent.Play("collapse", PlayMode.StopAll);
     }
 

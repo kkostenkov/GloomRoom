@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EnemySupervisor : MonoBehaviour {
+    [SerializeField] private Transform playerTransform;
     public List<GameObject> spawnPoints;
     public GameObject enemyPrefab;
     private List<GameObject> enemies;
@@ -19,6 +20,7 @@ public class EnemySupervisor : MonoBehaviour {
             enemy.transform.SetParent(this.transform);
             enemies.Add(enemy);
             enemy.GetComponent<ChargeHolder>().Overcharged += OnEnemyDeath;
+            enemy.GetComponent<WarriorBehaviour>().PlayerTransform = playerTransform;
             enemiesAlive++;
         }
 	}

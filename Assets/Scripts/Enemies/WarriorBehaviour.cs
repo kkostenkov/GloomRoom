@@ -5,6 +5,9 @@ using System.Linq;
 
 public class WarriorBehaviour : MonoBehaviour {
     private Transform player;
+    public Transform PlayerTransform {
+        set { player = value; }
+        }
     private const float playerDetectionRadius = 12f;
     private enum NpcMood { Calm, Angry, Dead };
     private NpcMood mood;
@@ -16,7 +19,7 @@ public class WarriorBehaviour : MonoBehaviour {
     private Vector3 movementDirection;
     private bool movementAllowed;
     private float calmSpeed = 1f;
-    private float angrySpeed = 3f;
+    private float angrySpeed = 4f;
     private float turnSpeed = 60f;
 
     private const float checkTimeout = 0.1f; // seconds before another collision check
