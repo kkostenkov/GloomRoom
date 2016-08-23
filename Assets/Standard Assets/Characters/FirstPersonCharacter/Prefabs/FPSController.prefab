@@ -13,9 +13,10 @@ GameObject:
   - 54: {fileID: 5400000}
   - 82: {fileID: 8200000}
   - 114: {fileID: 11488322}
+  - 114: {fileID: 11437784}
   m_Layer: 0
   m_Name: FPSController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +116,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 487234}
   - 111: {fileID: 11122040}
+  - 120: {fileID: 12051802}
+  - 114: {fileID: 11404400}
   m_Layer: 0
   m_Name: CQAssaultRifle
   m_TagString: Untagged
@@ -185,6 +188,21 @@ GameObject:
   - 23: {fileID: 2355204}
   m_Layer: 0
   m_Name: BulletCasing2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &180322
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 472648}
+  m_Layer: 0
+  m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,6 +331,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 487234}
   m_RootOrder: 6
+--- !u!4 &472648
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.126, z: 0.294}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 487234}
+  m_RootOrder: 9
 --- !u!4 &482318
 Transform:
   m_ObjectHideFlags: 1
@@ -372,6 +403,7 @@ Transform:
   - {fileID: 470886}
   - {fileID: 435526}
   - {fileID: 486206}
+  - {fileID: 472648}
   m_Father: {fileID: 400002}
   m_RootOrder: 0
 --- !u!20 &2000000
@@ -911,6 +943,31 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+--- !u!114 &11404400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c31b0ee9794a974c82ced6fc63d822b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lazerVisual: {fileID: 12051802}
+  muzzle: {fileID: 472648}
+--- !u!114 &11437784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2838503c4a5c1844c80905055d6a68b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overchargeTime: 0.5
 --- !u!114 &11488322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -922,6 +979,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a9471d358a7504f89e7f846c1b49a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!120 &12051802
+LineRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155868}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: 0.01
+    endWidth: 0.05
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
 --- !u!124 &12474086
 Behaviour:
   m_ObjectHideFlags: 1
