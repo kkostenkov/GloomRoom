@@ -16,5 +16,17 @@ namespace Objects
                 
             }
         }
+
+        public interface IChargable
+        {
+            void TakeCharge();
+        }
+        public class ChargeHolder : MonoBehaviour, IChargable
+        {
+            public void TakeCharge()
+            {
+
+            }
+        }
     }
 }
