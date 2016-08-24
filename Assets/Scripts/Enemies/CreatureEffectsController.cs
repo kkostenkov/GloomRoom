@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CreatureEffectsController : MonoBehaviour {
     [SerializeField] private AudioClip explosionSound;
-    [SerializeField] ParticleEmitter explosionVisual;
+    [SerializeField] ParticleSystem explosionVisual;
     private AudioSource audioSource;
     [SerializeField] private Animation animationComponent;
     private Dictionary<string, string> animationNames;
@@ -71,6 +71,7 @@ public class CreatureEffectsController : MonoBehaviour {
     {
         audioSource.clip = explosionSound;
         audioSource.Play();
+        explosionVisual.Play();
         animationComponent.Play("collapse", PlayMode.StopAll);
     }
 
