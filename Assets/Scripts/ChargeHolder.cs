@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ChargeHolder : MonoBehaviour {
     [SerializeField] private float overchargeTime = 3f; // Time till overcharge in seconds
-    private bool isCharging = false;
+    private bool isChargingRemotely = false;
+    private bool isChargingByTouch = false;
     private float chargeTimer;
     private bool overcharged = false;
 
@@ -21,14 +22,14 @@ public class ChargeHolder : MonoBehaviour {
         if (chargeTimer >= overchargeTime)
         {
             overcharged = true;
-            Overcharged();
+            Overcharged();            
         }
         
         // Add time to charge timer.
-        if (isCharging)
+        if (isChargingRemotely || isChargingByTouch)
         {
             chargeTimer += Time.deltaTime;
-            isCharging = false;
+            isChargingRemotely = false;
         } else 
         {
             // Reset charge timer if this frame was no charge;
@@ -38,8 +39,16 @@ public class ChargeHolder : MonoBehaviour {
 
     public void TakeCharge()
     {
-        isCharging = true;
+        isChargingRemotely = true;
+    }
+    public void StartChargeByTouch()
+    {
+        isChargingByTouch = true;
+    }
+    public void StopChargeByTouch()
+    {
+        isChargingByTouch = false;
     }
 
-    
+
 }

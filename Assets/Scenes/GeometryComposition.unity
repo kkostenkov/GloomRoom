@@ -1452,6 +1452,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 705438007}
+--- !u!114 &852412487 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11437784, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 2}
+  m_PrefabInternal: {fileID: 914637401}
+  m_Script: {fileID: 11500000, guid: 2838503c4a5c1844c80905055d6a68b2, type: 3}
 --- !u!1 &870248402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1546,10 @@ Prefab:
     - target: {fileID: 5400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_IsKinematic
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
@@ -3869,7 +3879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8e963fb07ac2840a97b3a5bed560f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharge: {fileID: 0}
+  playerCharge: {fileID: 852412487}
   hud: {fileID: 870248404}
   gameOver: {fileID: 1761413461}
   winMessage: {fileID: 705438007}

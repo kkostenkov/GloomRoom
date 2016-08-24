@@ -3,10 +3,16 @@ using System.Collections;
 
 public class TouchChargeDealer : MonoBehaviour {
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag != Tags.Player) return;
-        other.GetComponent<ChargeHolder>().TakeCharge();
+        other.GetComponent<ChargeHolder>().StartChargeByTouch();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag != Tags.Player) return;
+        other.GetComponent<ChargeHolder>().StopChargeByTouch();
     }
 
 }
