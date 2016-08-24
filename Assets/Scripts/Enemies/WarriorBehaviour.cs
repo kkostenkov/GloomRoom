@@ -193,7 +193,7 @@ public class WarriorBehaviour : MonoBehaviour {
         } else
         {
             float turnAngle = turnSpeed * Time.deltaTime;
-            float angleToTarget = CalculateSignedAngleToTarget(selfTransform.forward, movementDirection);
+            float angleToTarget = Vector3.Angle(selfTransform.forward, movementDirection);
             selfTransform.Rotate(Vector3.up, Mathf.Clamp(turnAngle, 0, angleToTarget));
         }
     }
