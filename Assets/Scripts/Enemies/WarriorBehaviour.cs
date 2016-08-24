@@ -144,9 +144,9 @@ public class WarriorBehaviour : MonoBehaviour {
 
     private void ChooseMovementDirection()
     {
-        // Find not blocked ways.
         directionsWithObstacles.Clear();
         safeDirections.Clear();
+        // Find not blocked ways.
         for (int i = 0; i < directions.Count; i++)
         {
             ray = new Ray(selfTransform.position, directions[i]);
@@ -168,7 +168,7 @@ public class WarriorBehaviour : MonoBehaviour {
             if (!movementAllowed) Moved();
             movementAllowed = true;
         }
-        // Continue moving to previous direction if it is unblocked.
+        // Try continue moving to previous direction.
         if (safeDirections.Contains(lastMovement))
         {
             movementDirection = lastMovement;
@@ -183,33 +183,27 @@ public class WarriorBehaviour : MonoBehaviour {
 
     private void Turn()
     {
-        float turnAngle = turnSpeed * Time.deltaTime;
-        float angleToTarget;
         if (mood == NpcMood.Angry)
         {
-            // Angry mobs run faster.
-            turnAngle *= 2;
-            // And look at player;
-            angleToTarget = Vector3.Angle(selfTransform.forward, new Vector3(player.position.x, 
-                                                                             selfTransform.position.y, 
-                                                                             player.position.z)
-                                                                             );
+            // Angry mobs turn at instant.
+            selfTransform.LookAt(new Vector3(player.position.x, 
+                                             selfTransform.position.y, // Same height.
+                                             player.position.z)
+                                             );
         } else
         {
-            angleToTarget = Vector3.Angle(selfTransform.forward, movementDirection);
+            float turnAngle = turnSpeed * Time.deltaTime;
+            float angleToTarget = CalculateSignedAngleToTarget(selfTransform.forward, movementDirection);
+            selfTransform.Rotate(Vector3.up, Mathf.Clamp(turnAngle, 0, angleToTarget));
         }
-        /*
-        // Choose left or right turn;
-        if (angleToTarget > 90)
-        {
-            print("turn back");
-            turnAngle *= -1;
-            angleToTarget -= 90;
-        }
-        */
-        selfTransform.Rotate(Vector3.up, Mathf.Clamp(turnAngle, 0, angleToTarget));
     }
 
+    private float CalculateSignedAngleToTarget(Vector3 vec1, Vector3 vec2)
+    {
+        Vector3 diference = vec2 - vec1;
+        float sign = (vec2.y < vec1.y) ? -1.0f : 1.0f;
+        return Vector3.Angle(Vector3.right, diference) * sign;
+    }
 
     private void GenerateDirectionsToCheck()
     {
