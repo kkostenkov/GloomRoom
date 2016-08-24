@@ -105,13 +105,12 @@ public class WarriorBehaviour : MonoBehaviour {
                 selfTransform.position = Vector3.MoveTowards(selfTransform.position, selfTransform.position + movementDirection, moveSpeed * Time.deltaTime);
             }
             lastMovement = movementDirection;
-            // Turn.
-            float turnAngle = turnSpeed * Time.deltaTime;
-            selfTransform.Rotate(Vector3.up, Mathf.Clamp(turnAngle, 0, angleToTarget));
+            Turn();
             yield return null;
         }
     }
 
+   
     private IEnumerator AngryBehaviour()
     {
         while (true)
@@ -126,10 +125,7 @@ public class WarriorBehaviour : MonoBehaviour {
             // Move.
             Vector3 destination = new Vector3(player.position.x, selfTransform.position.y, player.position.z);
             selfTransform.position = Vector3.MoveTowards(selfTransform.position, destination, angrySpeed * Time.deltaTime);
-            // Turn.
-            float angleToTarget = Vector3.Angle(selfTransform.forward, movementDirection);
-            float turnAngle = turnSpeed * Time.deltaTime;
-            selfTransform.Rotate(Vector3.up, Mathf.Clamp(turnAngle, 0, angleToTarget));
+            Turn();
             yield return null;
         }
     }
@@ -184,7 +180,37 @@ public class WarriorBehaviour : MonoBehaviour {
             movementDirection = new Vector3(safeDirections[choise].x, 0, safeDirections[choise].z);
         }
     }
-    
+
+    private void Turn()
+    {
+        float turnAngle = turnSpeed * Time.deltaTime;
+        float angleToTarget;
+        if (mood == NpcMood.Angry)
+        {
+            // Angry mobs run faster.
+            turnAngle *= 2;
+            // And look at player;
+            angleToTarget = Vector3.Angle(selfTransform.forward, new Vector3(player.position.x, 
+                                                                             selfTransform.position.y, 
+                                                                             player.position.z)
+                                                                             );
+        } else
+        {
+            angleToTarget = Vector3.Angle(selfTransform.forward, movementDirection);
+        }
+        /*
+        // Choose left or right turn;
+        if (angleToTarget > 90)
+        {
+            print("turn back");
+            turnAngle *= -1;
+            angleToTarget -= 90;
+        }
+        */
+        selfTransform.Rotate(Vector3.up, Mathf.Clamp(turnAngle, 0, angleToTarget));
+    }
+
+
     private void GenerateDirectionsToCheck()
     {
         directions.Clear();
